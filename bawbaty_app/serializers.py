@@ -33,7 +33,7 @@ class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
         fields = '__all__'
-        read_only_fields = ['citizen', 'tracking_number', 'submitted_at', 'updated_at']
+        read_only_fields = ['citizen', 'tracking_id', 'submitted_at', 'updated_at']
 
 # --- الكلاس الجديد الخاص بالشكاوى ---
 class ComplaintSerializer(serializers.ModelSerializer):
