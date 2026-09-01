@@ -118,8 +118,8 @@ class AuditLog(models.Model):
     action_time = models.DateTimeField(auto_now_add=True, verbose_name="وقت الإجراء")
 
     def __str__(self):
-        return f"تعديل على {self.request.tracking_number}" # type: ignore
-
+        return f"تعديل على {self.request.tracking_id}"
+    
 #7. جدول تذاكر الدعم والشكاوى (الأساس لنموذج الذكاء الاصطناعي)
 class SupportTicket(models.Model):
     TICKET_TYPES = [

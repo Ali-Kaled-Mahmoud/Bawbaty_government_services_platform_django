@@ -4,35 +4,32 @@ from .views import (
     DepartmentViewSet,
     RegisterView, 
     ServiceViewSet, 
-    ServiceDetailView, # <-- استيراد واجهة تفاصيل الخدمة حسب الـ ID
+    ServiceDetailView,
     AppointmentViewSet, 
     RequestViewSet,
+    AuditLogViewSet,
     ComplaintViewSet,
-    DashboardStatsView  
+    DashboardStatsView,
+    CustomTokenObtainPairView
 )
-# استيراد مكتبات التوكين
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenRefreshView
+
 router = DefaultRouter()
 router.register(r'departments', DepartmentViewSet, basename='department')
 router.register(r'services', ServiceViewSet, basename='service')
 router.register(r'appointments', AppointmentViewSet, basename='appointment')
 router.register(r'requests', RequestViewSet, basename='request')
+router.register(r'audit-logs', AuditLogViewSet, basename='audit-log')
 router.register(r'complaints', ComplaintViewSet, basename='complaint')
 
 urlpatterns = [
-    # مسار واجهة الإحصائيات المخصصة
     path('dashboard-stats/', DashboardStatsView.as_view(), name='dashboard-stats'),
     path('api/register/', RegisterView.as_view(), name='register'),
-    
-    # مسار مخصص لجلب بيانات خدمة محددة باستخدام معرف الخدمة (ID)
     path('services/<int:pk>/', ServiceDetailView.as_view(), name='service-detail'),
-        # الروابط الجديدة الخاصة بتسجيل الدخول وتوليد التوكين
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    
+    # مسار تسجيل الدخول المخصص
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # مسارات الروتر الافتراضية
     path('', include(router.urls)),
 ]
