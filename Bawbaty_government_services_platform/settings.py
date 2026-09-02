@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bawbaty_app.apps.BawbatyAppConfig',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -153,4 +154,16 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
+}
+
+JAZZMIN_SETTINGS = {
+    "site_title": "بوابتي",
+    "site_header": "إدارة بوابتي",
+    "welcome_sign": "إدارة منصة بوابتي",
+    "search_model": "auth.User",
+    "topmenu_links": [
+        {"name": "الرئيسية", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+    "show_sidebar": True,
+    "changeform_format": "horizontal_tabs",
 }

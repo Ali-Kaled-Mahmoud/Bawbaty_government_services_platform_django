@@ -40,5 +40,9 @@ admin.site.register(AuditLog)
 @admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     list_display = ('subject', 'user', 'status', 'created_at')
-    list_filter = ('status', 'ai_classification')
+    list_filter = ('status',)
     search_fields = ('subject', 'description')
+
+admin.site.site_header = "لوحة إدارة بوابتي"
+admin.site.site_title = "بوابتي"
+admin.site.index_title = "إدارة منصة بوابتي"

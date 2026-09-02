@@ -30,14 +30,16 @@ class ServiceSerializer(serializers.ModelSerializer):
 class AppointmentSerializer(serializers.ModelSerializer):
     citizen_name = serializers.CharField(source='citizen.full_name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
-    service_name = serializers.CharField(source='service.name', read_only=True)
+    service_name = serializers.CharField(source='service.name', read_only=True, default=None)
 
     class Meta:
         model = Appointment
         fields = '__all__'
         read_only_fields = ['citizen', 'status']
+        extra_kwargs = {
+            'service': {'required': False, 'allow_null': True}
+        }
 
-# --- المحول المحدث للطلبات ---
 class RequestSerializer(serializers.ModelSerializer):
     citizen_name = serializers.CharField(source='citizen.full_name', read_only=True)
     citizen_national_id = serializers.CharField(source='citizen.national_id', read_only=True)
@@ -50,7 +52,6 @@ class RequestSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['citizen', 'tracking_id', 'created_at']
 
-# --- محول سجل التدقيق ---
 class AuditLogSerializer(serializers.ModelSerializer):
     action_by_name = serializers.CharField(source='action_by.full_name', read_only=True)
 
@@ -64,4 +65,4 @@ class ComplaintSerializer(serializers.ModelSerializer):
     class Meta:
         model = Complaint
         fields = '__all__'
-        read_only_fields = ['user', 'ai_classification', 'status', 'created_at']
+        read_only_fields = ['user', 'status', 'created_at']
