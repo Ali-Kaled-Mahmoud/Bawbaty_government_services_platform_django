@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('لوحة الإدارة المركزية') }}{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <!-- استدعاء خط Tajawal للتطابق التام مع واجهة التطبيق -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- ربط ملف التنسيق المخصص -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <h1 id="site-name" style="margin: 0; padding: 0;">
+      <a href="{% url 'admin:index' %}">لوحة إدارة المنصة</a>
+    </h1>
+  </div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

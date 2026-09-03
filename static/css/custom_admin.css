@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
+/* --- الإعدادات العامة والخطوط --- */
+body {
+    font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    background-color: #f8fafc !important; /* Slate 50 */
+    color: #334155 !important;
+    direction: rtl;
+}
+
+/* --- الشريط العلوي (Header) --- */
+#header {
+    background-color: #0f172a !important; /* Slate 900 */
+    border-bottom: 3px solid #0d9488 !important; /* Teal border */
+    color: #ffffff !important;
+    padding: 14px 24px !important;
+}
+
+#header a:link, #header a:visited {
+    color: #f8fafc !important;
+}
+
+#site-name a {
+    font-weight: 800 !important;
+    font-size: 1.2rem !important;
+    color: #ffffff !important;
+}
+
+#user-tools {
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    color: #cbd5e1 !important;
+}
+
+#user-tools a {
+    color: #2dd4bf !important;
+    font-weight: 700 !important;
+    transition: color 0.2s;
+}
+
+#user-tools a:hover {
+    color: #f59e0b !important;
+}
+
+/* --- مسار التصفح (Breadcrumbs) --- */
+div.breadcrumbs {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px 24px !important;
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+}
+
+div.breadcrumbs a {
+    color: #0f766e !important;
+    font-weight: 700 !important;
+}
+
+/* --- الحاويات والموديلات (Cards & Modules) --- */
+#content {
+    padding: 24px !important;
+}
+
+.module {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 24px !important;
+    overflow: hidden !important;
+}
+
+.module h2, .module caption, header.module h2 {
+    background-color: #0f766e !important; /* Teal Header */
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 12px 20px !important;
+}
+
+/* --- الجداول والقوائم (Tables) --- */
+#result_list {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+}
+
+#result_list th {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    padding: 12px 16px !important;
+}
+
+#result_list td {
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    font-size: 0.85rem !important;
+}
+
+#result_list tr:hover td {
+    background-color: #f8fafc !important;
+}
+
+/* --- الأزرار والحقول (Buttons & Forms) --- */
+input[type=submit], input[type=button], .submit-row input {
+    background-color: #0f766e !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover{
+    background-color: #115e59 !important;
+    transform: translateY(-1px);
+}
+
+/* الأزرار الرئيسية الثانوية (Amber Accent) */
+.button.default, input[type=submit].default {
+    background-color: #f59e0b !important;
+    color: #0f172a !important;
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background-color: #d97706 !important;
+    color: #ffffff !important;
+}
+
+
+
+/* حقول الإدخال */
+input[type=text], input[type=password], input[type=email], textarea {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    background-color: #ffffff !important;
+    font-size: 0.85rem !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+input[type=text]:focus, select:focus, textarea:focus {
+    border-color: #0d9488 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15) !important;
+}
+
+/* شريط الفلترة الجانبي */
+#changelist-filter {
+    background-color: #ffffff !important;
+    border-right: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+}
+
+#changelist-filter h2 {
+    background: transparent !important;
+    color: #0f172a !important;
+    font-weight: 800 !important;
+    border-bottom: 2px solid #f1f5f9 !important;
+    padding-bottom: 8px !important;
+}

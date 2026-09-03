@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bawbaty_app.apps.BawbatyAppConfig',
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware', # <-- السطر الجديد الخاص بـ CORS تم وضعه هنا في المكان الصحيح!
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +53,7 @@ ROOT_URLCONF = 'Bawbaty_government_services_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,21 +71,28 @@ WSGI_APPLICATION = 'Bawbaty_government_services_platform.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bawabaty_db',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+#         'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'bawabaty_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'admin',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
@@ -120,7 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
@@ -156,14 +169,6 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': False,
 }
 
-JAZZMIN_SETTINGS = {
-    "site_title": "بوابتي",
-    "site_header": "إدارة بوابتي",
-    "welcome_sign": "إدارة منصة بوابتي",
-    "search_model": "auth.User",
-    "topmenu_links": [
-        {"name": "الرئيسية", "url": "admin:index", "permissions": ["auth.view_user"]},
-    ],
-    "show_sidebar": True,
-    "changeform_format": "horizontal_tabs",
-}
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-dev-key')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['*']  # يمكنك تخصيصه لنطاق Render لاحقاً
