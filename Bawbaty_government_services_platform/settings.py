@@ -39,7 +39,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # <-- السطر الجديد الخاص بـ CORS تم وضعه هنا في المكان الصحيح!
+    'corsheaders.middleware.CorsMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -160,6 +160,28 @@ REST_FRAMEWORK = {
 
 # إعدادات بوابات العبور (CORS) للسماح لاتصال الواجهات الأمامية
 CORS_ALLOW_ALL_ORIGINS = True
+
+# تحديد النطاقات المسموح لها بإرسال طلبات إلى Django
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+# إذا كنت تعتمد على Cookies أو إرسال JWT عبر الـ Headers المخصصة
+CORS_ALLOW_CREDENTIALS = True
+
+# السماح لجميع أنواع الـ Headers الأساسية
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 # ضبط صلاحية التوكين لمدة 24 ساعة (يوم واحد)
 SIMPLE_JWT = {
