@@ -163,12 +163,21 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # تحديد النطاقات المسموح لها بإرسال طلبات إلى Django
 CORS_ALLOWED_ORIGINS = [
+    "https://bawbaty.netlify.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
 # إذا كنت تعتمد على Cookies أو إرسال JWT عبر الـ Headers المخصصة
 CORS_ALLOW_CREDENTIALS = True
+
+# النطاقات المسموح للـ Django للعمل عليها
+ALLOWED_HOSTS = [
+    "bawbaty.onrender.com",  # رابط تطبيقك على Render
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 # السماح لجميع أنواع الـ Headers الأساسية
 CORS_ALLOW_HEADERS = [
